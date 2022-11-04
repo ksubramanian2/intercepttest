@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        
+      {
+          "type": "node",
+          "request": "launch",
+          "timeout": 20000,
+          "name": "WebdriverIO",
+          "runtimeExecutable": "yarn",
+          "runtimeArgs": ["test"],
+          // "runtimeVersion": "16.13.0",
+          "cwd": "${workspaceRoot}",
+          "console": "integratedTerminal",
+          "autoAttachChildProcesses": true,
+          "env": { "DEBUG": "true"}
+      }
+    ]
+}
