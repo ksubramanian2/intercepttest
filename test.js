@@ -15,4 +15,5 @@ it('getRequests test', async function() {
     const requests = await browser.getRequests();
     console.log('returned from getRequests');
     console.log(`requests count = ${requests.length}`);
+    assert(requests === 4, 'All network requests not caught');
 });
