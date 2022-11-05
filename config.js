@@ -14,13 +14,13 @@ exports.config = {
 
   sync: true,
   logLevel: 'error',
-  waitforTimeout: 600000,
-  connectionRetryTimeout: 300000,
+  waitforTimeout: 60000,
+  connectionRetryTimeout: 30000,
   connectionRetryCount: 3,
 
   framework: 'mocha',
   mochaOpts: {
-    timeout: 600000
+    timeout: 60000
   },
   reporters: ['spec']
 };
