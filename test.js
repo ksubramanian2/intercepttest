@@ -1,7 +1,8 @@
 const { assert } = require('chai');
 
 it('getRequests test', async function() {
-    this.timeout(30000);
+    await browser.setTimeout({ 'script': 30000 })
+    await browser.setTimeout({ 'implicit': 15000 })
     await browser.url('https://www.google.com');    
     await browser.setupInterceptor();
 
@@ -11,10 +12,11 @@ it('getRequests test', async function() {
     await searchTextElement.waitForEnabled();
     await searchTextElement.setValue('abc');
 
-    await browser.pause(1000);
+    await browser.pause(5000);
     // I have isolated the problem to the above browser.pause()
     // If I comment it, getRequests() returns but gives a zero count for the number of requests
-    // If I uncomment it, getRequests() hangs
+    // If I uncomment it and pause for 1000 msecs, it works
+    // If I uncomment it and pause for 5000 msecs, getRequests() times out
     console.log('entering getRequests')
     const requests = await browser.getRequests();
     const requestsCount = requests.length;
