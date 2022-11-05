@@ -1,16 +1,10 @@
 const { assert } = require('chai');
 
-describe('reproduce getRequests hanging', function integrationTest() {
-    before(async () => {
-        await browser.url('https://www.google.com');
-    });
-
-    let pageLoadSuccess = null;
-      
+describe('reproduce getRequests hanging', function integrationTest() {    
+    this.timeout(30000);
     it('getRequests test', async function() {
-        pageLoadSuccess = await browser.$('img.lnXdpd');
-        assert(pageLoadSuccess, 'The page did not load');
-       
+        this.timeout(30000);
+        await browser.url('https://www.google.com');       
         await browser.setupInterceptor();
         //  Seach text entry
         const searchTextElement = await browser.$('input.gLFyf.gsfi');
