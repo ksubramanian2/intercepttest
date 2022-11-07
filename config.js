@@ -2,6 +2,7 @@ exports.config = {
   debug: 'true',
   capabilities: [
     {
+      // platformName: 'macOS 12.4',
       browserName: 'chrome',
       browserVersion: '107'
     }
