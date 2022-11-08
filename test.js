@@ -1,9 +1,9 @@
 const { assert } = require('chai');
 
 describe("intercept test", function () {
-    this.timeout(30000); 
+    this.timeout(20000); 
     it('getRequests test', async function() {
-        this.timeout(30000); 
+        this.timeout(20000); 
         await browser.url('https://www.google.com');    
         await browser.setupInterceptor();
 
@@ -14,10 +14,12 @@ describe("intercept test", function () {
         await searchTextElement.setValue('abc');
 
         await browser.pause(5000);
-        // I have isolated the problem to the above browser.pause()
-        // If I comment it, getRequests() returns but gives a zero count for the number of requests
-        // If I uncomment it and pause for up to 100 msecs, it works
-        // If I uncomment it and pause for 5000 msecs, getRequests() times out
+        // The above browser.pause() causes varying behaviors in Chrome 107
+        // With a pause 0 msecs, getRequests() returns but gives a zero count for the number of requests
+        // With a pause for 100 msecs, it works in Chrome
+        // With a pause for 5000 msecs, getRequests() hangs and then times out
+        // The test works in Safari even with pauses of 5000 or higher msecs.
+
         console.log('entering getRequests')
         const requests = await browser.getRequests();
         const requestsCount = requests.length;
